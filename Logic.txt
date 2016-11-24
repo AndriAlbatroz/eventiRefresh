@@ -1,0 +1,3 @@
+per la modifica dei dati di un pr faccio questi passaggi:
+
+	--> dal button nella home --> ricerca pr (pug) con una drop down list -->  appena scelgo uno dei pr contenuti nella lista mi rendirizzo ad una vuova pagina con i codici speciali ? e vedo che id ha il pr scelto

@@ -1,0 +1,24 @@
+{
+  "name": "Refresh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Andrea Micheli - Alias: AndriAlbatroz",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.14.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "datatables": "^1.10.12",
+    "express": "^4.14.0",
+    "mysql": "^2.11.1",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta6"
+  }
+}

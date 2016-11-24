@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<title>Plot</title>
+	
+	<link href="c3/c3.css" rel="stylesheet" type="text/css">
+	<script src="/c3/node_modules/d3/d3.min.js" charset="utf-8"></script>
+	<script src="/c3/c3.min.js"></script>
+
+</head>
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+		<header id="fh5co-header" role="banner">
+			<div class="container">
+				<div id="chart"></div>
+				<div id="totPr"></div>
+			</div>
+		</header>	
+
+	<!-- MAIN JS -->
+	<script src="js/main.js"></script>
+
+	<script type="text/javascript">
+	
+	//dichiaro gli array in cui andrò a salvare i valori elaborati delle pagine json
+
+	var arr1 = new Array();
+	var arr2 = new Array();
+	
+	//varibili per salvare il valore sommato di tutto l'array dopo essere stato elaborato correttemente
+
+	var totVend = 0;
+	var totDate = 0;
+
+	//funzioni in jQuery per l'aquisizione dei dati in json dalle pagine elencate, i dati vengono passati dal file app.js con la funzione res.json(variable);
+
+	jQuery.getJSON('/prevdate',null,function(data) {
+		var j = 0; //indice per lo scorrimento dell'array
+		totDate = 0; //azzero per sicurezza la varibile delle prevendite totali in circolo (date)
+		
+		//inzio a  scorrere la var data per pushare ogni suo valore in un indice dell'array precedentemente creato 
+
+		while(data[j]) {
+			arr2.push(parseInt(data[j].prevDate)); //converto la stringa in intero per poter utilizzarla nel grafico ed eseguire operazioni matematiche
+			j++; //incremento l'indice per scorrere l'array
+		}
+
+		totDate = arr2.reduce((a,b) => a + b, 0); //sommmo tutti i valori contenuti nell'array e salvo il valore nella variabile principale
+	});	
+
+	//la seguente funzione è uguale alla precedente solo che prendo i valori json delle prevendite venute
+
+	jQuery.getJSON('/prevvendute',null,function(data) {
+		var i = 0;
+		totVend = 0;
+		while(data[i]) {
+			arr1.push(parseInt(data[i].prevVen));
+			i++;
+		}
+
+		totVend = arr1.reduce((a,b) => a + b, 0);
+		
+		//genero un grafico con la lib. c3 precedentemente inclusa nell' head dell'html
+		//la lib andrà automaticamente ad inserire il grafico in un div che abbia id="chart",nel caso in cui si volesse inserire più grafici basta creare tanti div con diversi id ed aggiungere nella funzione c3.generate il parametro bindto: "id"
+
+		var chart = c3.generate({
+			data: {
+				columns: [
+					['vendute: ' + totVend, totVend], //nomi delle variabili del grafico con il relativo valore associato
+					['in circolo: ' + totDate, totDate - totVend] //in circolo ovvero le prev date non sono altro che le prevendite totali date - quelle gia vendute
+				],
+				type: 'donut' //tipo del grafico
+			}
+		});
+	});
+	</script>
+</body>
+</html>

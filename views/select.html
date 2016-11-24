@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Seleziona il pr</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'> -->
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!--<link rel="stylesheet" type="text/css" href="dist/css/bootstrap-select.css">-->
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	<div id="fh5co-page">
+		<header id="fh5co-header" role="banner">
+			<div class="container">
+				<div class="header-inner">
+					<nav role="navigation">
+						<ul>					
+							<li class="cta"><a href="/">Home</a></li>
+							<li class="cta"><a href="javascript:history.back()">Back</a></li>
+							<li class="cta"><a href="/logout">Logout</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<div id="fh5co-page">
+     	<script src="js/modernizr-2.6.2.min.js"></script>
+		<!-- FOR IE9 below -->
+		<!--[if lt IE 9]>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!-- Flexslider -->
+		<script src="js/jquery.flexslider-min.js"></script>
+		<header id="fh5co-header" role="banner">
+			<div class="container">
+				<div class="header-inner">
+					<h1><a>Seleziona il pr</a></h1>
+				</div>
+			</div>
+		</header>		
+		<aside id="fh5co-hero" class="js-fullheight">
+			<div class="flexslider js-fullheight">
+				<ul class="slides">
+			   	<li style="background-image: url(images/slide_1.jpg);">
+			   		<div class="overlay-gradient"></div>
+			   		<div class="container">
+			   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+			   				<div class="slider-text-inner">
+				   				<div id="drop"></div>
+				   				<p><input type="search" name="filter" id="filter" class="form-control" placeholder="	Search"><div id="drop"></div>				   				
+				   				<script type="text/javascript">
+
+				   				//funzione in jquery per la filtrazione degli elementi contenuti nella dropdown
+
+									$(document).ready(function(){ 
+									    $("#filter").keyup(function(){ //quando l'oggetto con id filter ha un mutamento del suo contenuto eseguo la funzione					
+									        var filter = $(this).val(), count = 0; //vado a salvare nella varibile filter il valore dell'oggetto filter, quidni quello che ho scritto, e genero anche la varibile count che mi serve per vedere il numero di risultati avuti in base alla parola chiave usata in precedenza
+
+									        //con l'id  dell'oggetto interessato, quindi .sel vado a prendere una sua opzione, quindi in questo caso l'option della dropdown con id sel, e per ogni valore vero nell'option eseguo la funzione, e se l'elemento dell'option corrisponde per similitudine a quello precedemente cercato allora lo mostro (show) altrimenti lo nasccondo (fadeout)
+
+									        $(".sel option").each(function(){        
+									            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+									                $(this).fadeOut();					 				         
+									            } else {
+									                $(this).show();
+									                count++;
+									            }
+									        });										        
+									    });
+									});
+								</script>
+			   				</div>
+			   				</div>
+			   			</div>
+			   		</div>
+			   	</li>					
+		</div>
+		</footer>
+		</div>
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+
+	<script src="js/main.js"></script>
+	<script src="js/select.js"></script> <!--funzione che rinchiude lo script per il pug-->
+	<!--funzione che permette di capire chi è stato selezionato e indirizzarlo nella pagina pr, passando nel url il codice per riconscere il pr selezionato tramite id nome e cognome-->
+	<script type="text/javascript">
+
+	//prendo i valori della pagina json con una query in j, e con il file js/select.js precedentememte inculuso (file generato nel compilare il pug) , passo la varibile data che contiene tutte le info prese dalla pagina json alla funzione contenuta select.js che mi compila il file pug con i dati e genera html, poi andrò a pushare il risulatato della template nel div con id drop 
+
+		jQuery.getJSON("/select", null, function(data) {
+			var HTML = templateDrop({
+				righe: data
+			});
+			document.getElementById("drop").innerHTML = HTML;
+			
+		});
+	</script>
+	<script type="text/javascript">
+
+	//funzione che viene richiamata quando vado a cambiare il valore della dropdown (quindi quando seleziono un pr), e questa funzione non fa altro che prendere il valore dell'elemento selezionato, splittarlo per prendere il valore dell'id, poiche splittando il valore della dropdown il primo elemento sarà sempre l'id poi nome, cognome etc... Poi creo una variabile url la quale contiene il prossimo indirizzo a cui dovrò essere indirizzato, passandogli peròò il valore dell'id cosi che da express riesco a prendere il valore di tale id e fare richieste al db solo su questo id
+
+		function go() {
+			var selected = document.getElementById("sel").value;
+			var splitted = selected.split(' ');
+			var url = "/pr?id=" + splitted[0];
+			window.location = url;
+		}
+	</script>
+	<button class="btn btn-primary">Prova</button>
+</body>
+</html>

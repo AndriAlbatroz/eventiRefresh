@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="css/flipclock.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+		<script src="js/flipclock.js"></script>		
+	</head>
+	<body>
+		<div class="clock" style="margin:2em;"></div>
+
+		<script type="text/javascript">
+			var clock;			
+			$(document).ready(function() {
+				// Imposto la date di fine, e la data attuale per calcoalre la diff in modo dynamico
+				var futureDate  = new Date("Sat, 19 Nov 2016 22:30:00 +0000");
+				var currentDate = new Date();
+
+				// Calcolo la differenza in secondi
+				var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+
+				// Calcolo la differenza dei giorni
+				function dayDiff(first, second) {
+					return (second-first)/(1000 * 60 * 60 * 24);
+				}
+
+				if (dayDiff(currentDate, futureDate) < 100) {
+					$('.clock').addClass('twoDayDigits');
+				} else {
+					$('.clock').addClass('threeDayDigits');
+				}
+
+				if(diff < 0) {
+					diff = 0;
+				}
+
+				// Genero un clock per la modifica dell'html
+				clock = $('.clock').FlipClock(diff, {
+					clockFace: 'DailyCounter',
+					countdown: true
+				});
+			});
+		</script>
+		
+	</body>
+</html>

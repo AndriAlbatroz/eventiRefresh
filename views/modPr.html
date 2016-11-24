@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Registra il tuo pr</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'> -->
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		<div id="fh5co-page">
+		<header id="fh5co-header" role="banner">
+			<div class="container">
+				<div class="header-inner">
+					<h1><a>RegistraPr</a></h1>
+					<nav role="navigation">
+						<ul>
+							<li class="cta"><a href="javascript:history.back()">Back</a></li>
+							<li class="cta"><a href="/logout">Logout</a></li>
+							<li class="cta"><a href="/">Home</a></li>			
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<aside id="fh5co-hero" class="js-fullheight">
+			<div class="flexslider js-fullheight">
+				<ul class="slides">
+			   	<li style="background-image: url(images/slide_1.jpg);">
+			   		<div class="overlay-gradient"></div>
+			   		<div class="container">
+			   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+			   				<div class="slider-text-inner">
+			   					<form name="register" action="/modPr" method="post"><br><br><br>
+			   						<input type="text" name="nome" id="nome" placeholder="Nome">
+				   					<input type="text" name="cognome" id="cognome" placeholder="Cognome">
+				   					<input type="text" name="numero" id="numero" placeholder="Numero">
+				   					<input type="text" name="mail" id="mail" placeholder="E-Mail">
+				   					<input type="text" name="anno" id="anno" placeholder="Anno">
+				   					<!--<input type="text" name="gestione" id="gestione" placeholder="Gestione">-->
+				   					<input type="text" name="zona" id="zona" placeholder="Zona">
+				   					<input type="text" name="scuola" id="scuola" placeholder="Scuola"><br>
+				   					<p><input type="submit" name="invia" value="Invia"></p>
+				   					<br><br><br>
+				   				</form>
+			   				</div>
+			   			</div>
+			   		</div>
+			   	</li>					
+		</div>
+		</footer>
+		</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+
+	<!-- MAIN JS -->
+	<script src="js/main.js"></script>
+
+	<script type="text/javascript">
+		//la route /getMod racchiude tutte le info del pr selezionato, server per scrivere nelle text il valore che il pr aveva in precedenza in modo tale da non stare li a riscrivere tutto ogni volta, ma semplicemente andando a modificare alcuni valori sbagliati
+		jQuery.getJSON("/getMod",null,function(data) {
+			document.getElementById("nome").value = data[0].nome;
+			document.getElementById("cognome").value = data[0].cognome;
+			document.getElementById("numero").value = data[0].numero;
+			document.getElementById("mail").value = data[0].mail;
+			document.getElementById("anno").value = data[0].anno;
+			document.getElementById("zona").value = data[0].zona;
+			document.getElementById("scuola").value = data[0].scuola;
+		});
+	</script>
+
+	</body>
+</html>

@@ -1,0 +1,10 @@
+table.table.table-striped
+	thead
+		tr
+			each chiave in Object.keys(righe[0])
+				th=chiave
+	tbody
+		each riga in righe
+			tr
+				each value in riga
+					td #{value}
