@@ -36,21 +36,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'views'))); //rendo statica la directory 'views'
 
 //creo una varibile che contiene tutte le info per la connessione al db
-
+/*
 var connessioneDB = mysql.createConnection({
 	host:     '127.0.0.1',
 	user:     'root',
 	password: 'citofono98',
 	database: 'refresh'
 });
-
+*/
 //mi connetto al db tramite la varibile precedentemente creata
-
+/*
 connessioneDB.connect(function(err) {
 	if(err) throw err;
 	console.log('Connesso al DB refresh');
 });
-
+*/
 //impostazione per l'ascolto di express sulla porta 8080
 
 app.listen(process.env.PORT || 8080, function(err) {
@@ -104,12 +104,11 @@ function omaggi(vendute) {
 //funzione per la pagina pricnipale
 
 app.get('/',function(req,res) {
-	if(req.cookies.autenticato != "true") return res.redirect("/login");
-	res.sendfile(path.join(__dirname + '/views/home.html'));
+	res.redirect('/countdown');
 });
 
 //funzione per il login
-
+/*
 app.get('/login',function(req,res) {
 	res.sendfile(path.join(__dirname + '/views/login.html'));
 });
@@ -375,11 +374,11 @@ app.post('/modifica',function(req,res) {
 });
 
 //route per visualizzare il countdown
-
+*/
 app.get('/countdown',function(req,res) {
 	res.sendfile(path.join(__dirname + '/views/countdown.html'));
 });
-
+/*
 //route per la modifica dei pr inseriti se si deve modificare qulacosa
 
 app.get('/modificaPr',function(req,res) {
@@ -457,4 +456,4 @@ app.post('/delPr',function(req,res) {
 			res.redirect('/');
 		}
 	);
-});
+});*/
